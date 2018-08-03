@@ -7,12 +7,18 @@
     <groupId>com.itea</groupId>
     <artifactId>qaauto-27.07.2018</artifactId>
     <version>1.0-SNAPSHOT</version>
-<dependencies>
+  <dependencies>
      <dependency>
         <groupId>org.seleniumhq.selenium</groupId>
         <artifactId>selenium-java</artifactId>
         <version>3.13.0</version>
     </dependency>
-</dependencies>
+    <dependency>
+        <groupId>org.testng</groupId>
+        <artifactId>testng</artifactId>
+        <version>6.14.3</version>
+        <scope>test</scope>
+    </dependency>
+  </dependencies>
 
 </project>

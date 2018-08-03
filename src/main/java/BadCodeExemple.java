@@ -18,26 +18,23 @@ public class BadCodeExemple {
         sleep(3000);
         //verify that results contains 10 elements
         List<WebElement> searchResults = browser.findElements(By.xpath("//div[@class='srg']/div[@class='g']"));
-        int x = searchResults.size();
-        if (x == 10){
+        if (searchResults.size()== 10){
         System.out.println("Results count is correct: "+searchResults.size());
         }
-        else {System.out.println("Results count is incorrect "+searchResults.size());
+        else {
+            System.out.println("Results count is incorrect "+searchResults.size());
         }
         //verify that each result item contains saerchterm
+        //for each searchResult in searchResult list
         for (WebElement searchResult: searchResults) {
             String searchResultText = searchResult.getText();
-            boolean Searchterm = searchResultText.contains("Selenium");
-            //if (searchResultText.equals("Selenium")){
-            if (Searchterm == true){
-                System.out.println("Searchterm found ");
+            if (searchResultText.toLowerCase().contains("selenium")){
+                System.out.println("Searchterm found.");
             }
             else {
-                System.out.println("Searchterm not found ");
+                System.out.println("Searchterm not found.");
             }
-
         }
         browser.close();
-
     }
 }
