@@ -25,10 +25,10 @@ public class LinkedinLoginTest {
         LinkedinLoginPage linkedinLoginPage = new  LinkedinLoginPage(browser);
         linkedinLoginPage.logIn("mathewsw1648@gmail.com","G147852369");
         Thread.sleep(3000);
+        LinkedinHomePage linkedinHomePage = new LinkedinHomePage(browser);
         Assert.assertEquals(browser.getCurrentUrl(), "https://www.linkedin.com/feed/", "Incorrect URL!");
         Assert.assertEquals(browser.getTitle(), "LinkedIn", "Incorrect Title");
-        WebElement profileDropdown = browser.findElement(By.xpath("//*[@id='profile-nav-item']"));
-        Assert.assertTrue(profileDropdown.isDisplayed(), "No profile dropdown on home page");
+        Assert.assertTrue(linkedinHomePage.isProfileNavigationItemDisplayed());
     }
     @Test //annotation
     public void negativeLoginTest() throws InterruptedException {
