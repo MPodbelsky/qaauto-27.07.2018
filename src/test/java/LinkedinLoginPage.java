@@ -3,10 +3,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class LinkedinLoginPage {
-    WebDriver browser;
-    WebElement userEmailField;
-    WebElement userPasswordField;
-    WebElement singInButton;
+    private WebDriver browser;
+    private WebElement userEmailField;
+    private WebElement userPasswordField;
+    private WebElement singInButton;
 
     public LinkedinLoginPage(WebDriver browser) {
         this.browser = browser;
@@ -21,7 +21,10 @@ public class LinkedinLoginPage {
         userEmailField.sendKeys(userEmail);
         userPasswordField.sendKeys(userPass);
         singInButton.click();
-
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
-
 }

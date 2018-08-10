@@ -3,18 +3,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class LinkedinHomePage {
-    WebDriver browser;
-    WebElement profileNavidationItem;
+    private WebDriver browser;
+    private WebElement profileNavidationItem;
     public LinkedinHomePage(WebDriver browser) {
         this.browser = browser;
         initElements();
     }
-    public void initElements(){
+    private void initElements() {
         profileNavidationItem = browser.findElement(By.xpath("//*[@id='profile-nav-item']"));
     }
-    public boolean isProfileNavigationItemDisplayed(){
-      profileNavidationItem.isDisplayed();
-        return true;
+    public String getCurrentPageTitle(){
+       return browser.getTitle();
     }
-
+    public String getCurrentPageUrl(){
+        return browser.getCurrentUrl();
+    }
+    public boolean isLoaded() {
+        return profileNavidationItem.isDisplayed() && getCurrentPageTitle().contains("LinkedIn") && getCurrentPageUrl().contains("/feed/");
+    }
 }
