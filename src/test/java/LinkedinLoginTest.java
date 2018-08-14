@@ -25,10 +25,46 @@ public class LinkedinLoginTest {
         linkedinLoginPage.logIn("mathewsw1648@gmail.com","G147852369");
         LinkedinHomePage linkedinHomePage = new LinkedinHomePage(browser);
         Assert.assertTrue(linkedinHomePage.isLoaded(),"HomePage is loaded");
-    }
+    } //NEGATIVE TESTS
     @Test //annotation
     public void negativeLoginTest() {
         linkedinLoginPage.logIn("Test@gmail.com","gfdhhrh");
+        LinkedinLoginSubmitPage LinkedinLoginSubmitPage = new LinkedinLoginSubmitPage(browser);
+        Assert.assertEquals(LinkedinLoginSubmitPage.getAlertBoxText(),"При заполнении формы были допущены ошибки. Проверьте и исправьте отмеченные поля.","Alert box has incorrect message!");
+    }
+    @Test //annotation
+    public void wrongSymbolsLogin() {
+        linkedinLoginPage.logIn("<!?/*()>@gmail.com","G147852369");
+        LinkedinLoginSubmitPage LinkedinLoginSubmitPage = new LinkedinLoginSubmitPage(browser);
+        Assert.assertEquals(LinkedinLoginSubmitPage.getAlertBoxText(),"При заполнении формы были допущены ошибки. Проверьте и исправьте отмеченные поля.","Alert box has incorrect message!");
+    }
+    @Test //annotation
+    public void wrongSymbolsPassword() {
+        linkedinLoginPage.logIn("mathewsw1648@gmail.com","<!?/*()>@");
+        LinkedinLoginSubmitPage LinkedinLoginSubmitPage = new LinkedinLoginSubmitPage(browser);
+        Assert.assertEquals(LinkedinLoginSubmitPage.getAlertBoxText(),"При заполнении формы были допущены ошибки. Проверьте и исправьте отмеченные поля.","Alert box has incorrect message!");
+    }
+    @Test //annotation
+    public void less6SymbolsPasswordWithoutLetters() {
+        linkedinLoginPage.logIn("mathewsw1648@gmail.com","14785");
+        LinkedinLoginSubmitPage LinkedinLoginSubmitPage = new LinkedinLoginSubmitPage(browser);
+        Assert.assertEquals(LinkedinLoginSubmitPage.getAlertBoxText(),"При заполнении формы были допущены ошибки. Проверьте и исправьте отмеченные поля.","Alert box has incorrect message!");
+    }
+    @Test //annotation
+    public void loginWithoutDotsAndCommercialAt() {
+        linkedinLoginPage.logIn("mathewsw1648gmailcom","G147852369");
+        LinkedinLoginSubmitPage LinkedinLoginSubmitPage = new LinkedinLoginSubmitPage(browser);
+        Assert.assertEquals(LinkedinLoginSubmitPage.getAlertBoxText(),"При заполнении формы были допущены ошибки. Проверьте и исправьте отмеченные поля.","Alert box has incorrect message!");
+    }
+    @Test //annotation
+    public void emptyLoginField() {
+        linkedinLoginPage.logIn(""," G147852369 ");
+        LinkedinLoginSubmitPage LinkedinLoginSubmitPage = new LinkedinLoginSubmitPage(browser);
+        Assert.assertEquals(LinkedinLoginSubmitPage.getAlertBoxText(),"При заполнении формы были допущены ошибки. Проверьте и исправьте отмеченные поля.","Alert box has incorrect message!");
+    }
+    @Test //annotation
+    public void emptyPasswordField() {
+        linkedinLoginPage.logIn("mathewsw1648@gmail.com","");
         LinkedinLoginSubmitPage LinkedinLoginSubmitPage = new LinkedinLoginSubmitPage(browser);
         Assert.assertEquals(LinkedinLoginSubmitPage.getAlertBoxText(),"При заполнении формы были допущены ошибки. Проверьте и исправьте отмеченные поля.","Alert box has incorrect message!");
     }
