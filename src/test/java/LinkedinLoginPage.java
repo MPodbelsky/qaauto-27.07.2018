@@ -17,6 +17,12 @@ public class LinkedinLoginPage {
         userPasswordField = browser.findElement(By.xpath("//input[@id='login-password']"));
         singInButton = browser.findElement(By.xpath("//input[@id='login-submit']"));
     }
+    public String getCurrentPageTitle(){
+        return browser.getTitle();
+    }
+    public boolean isPageLoaded(){
+        return singInButton.isDisplayed() && getCurrentPageTitle().contains("LinkedIn: Войти или зарегистрироваться");
+    }
     public void logIn(String userEmail, String userPass){
         userEmailField.sendKeys(userEmail);
         userPasswordField.sendKeys(userPass);
