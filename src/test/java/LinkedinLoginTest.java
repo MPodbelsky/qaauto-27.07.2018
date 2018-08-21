@@ -29,7 +29,7 @@ public class LinkedinLoginTest {
     @Test(dataProvider = "validFieldsCombination") //annotation
     public void successfulLoginTest(String userEmeil, String userPass) {
         LinkedinHomePage linkedinHomePage = linkedinLoginPage.logInReturnLinkedinHomePage(userEmeil, userPass);
-        Assert.assertTrue(linkedinHomePage.isLoaded(),"HomePage is loaded");
+        Assert.assertTrue(linkedinHomePage.isLoaded(),"HomePage is not loaded");
     }
                                      //NEGATIVE TESTS
     @DataProvider
