@@ -1,4 +1,4 @@
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,10 +7,9 @@ import org.openqa.selenium.support.PageFactory;
 public class LinkedinHomePage extends BasePage {
     @FindBy (xpath = "//*[@id='profile-nav-item']")
     private WebElement profileNavidationItem;
-    @FindBy (xpath = "//input[@role='combobox']")
-    private WebElement inputSearchField;
-    @FindBy (xpath = "//button[@class='search-typeahead-v2__button typeahead-icon']")
-    private WebElement searchButton;
+
+    @FindBy (xpath = "//input[@placeholder='Поиск' and @role='combobox']")
+    private WebElement searchField;
 
     public LinkedinHomePage(WebDriver browser) {
         this.browser = browser;
@@ -19,9 +18,9 @@ public class LinkedinHomePage extends BasePage {
     public boolean isLoaded() {
         return profileNavidationItem.isDisplayed() && getCurrentPageTitle().contains("LinkedIn") && getCurrentPageUrl().contains("/feed/");
     }
-    public LinkedinSearchPage searchTermEnter(String searchTerm){
-        inputSearchField.sendKeys(searchTerm);
-        searchButton.click();
+    public LinkedinSearchPage search(String searchTerm){
+        searchField.sendKeys(searchTerm);
+        searchField.sendKeys(Keys.ENTER);
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {

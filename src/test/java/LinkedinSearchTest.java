@@ -19,13 +19,13 @@ public class LinkedinSearchTest {
         browser.close();
     }
     @Test
-    public void successfulLogin(){
+    public void basicSearchTest(){
         Assert.assertTrue(linkedinLoginPage.isLoaded(), "User is not on LoginSubmit page");
         LinkedinHomePage linkedinHomePage = linkedinLoginPage.logInReturnLinkedinHomePage("mathewsw1648@gmail.com","G147852369");
         Assert.assertTrue(linkedinHomePage.isLoaded(),"HomePage is not loaded");
-        LinkedinSearchPage linkedinSearchPage = linkedinHomePage.searchTermEnter("HR");
-        Assert.assertTrue(linkedinSearchPage.isLoaded(),"User is not on SearchPage page");
-        Assert.assertTrue(linkedinSearchPage.isCountResultTen(),"Not 10 results");
-        Assert.assertTrue(linkedinSearchPage.isContainsSearchTerm(),"No HR");
+        LinkedinSearchPage linkedinSearchPage = linkedinHomePage.search("HR");
+        Assert.assertTrue(linkedinSearchPage.isLoaded(),"Search page is not loaded");
+        Assert.assertEquals(linkedinSearchPage.getSearchResultsCount(),10,"Search results count is wrong");
+        Assert.assertTrue(linkedinSearchPage.isContainsSearchTerm(),"Search results is wrong");
     }
 }

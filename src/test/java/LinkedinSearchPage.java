@@ -3,48 +3,45 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import java.util.List;
 
 public class LinkedinSearchPage extends BasePage {
-    @FindBy (xpath = "//ul[@class='search-results__list list-style-none']/li[@class='search-result search-result__occluded-item ember-view']")
+    @FindBy (xpath = "//li[@class='search-result search-result__occluded-item ember-view']")
     private List<WebElement> searchResults;
-    @FindBy (xpath = "//button[@class='search-filters-bar__all-filters button-tertiary-medium-muted flex-shrink-zero mr3']")
-    private WebElement searchFilterButton;
+
+    @FindBy (xpath = "//h3[contains(@class,'search-results__total')]")
+    private WebElement searchResultsTotal;
+
     public LinkedinSearchPage(WebDriver browser){
         this.browser = browser;
         PageFactory.initElements(browser, this);
     }
     public boolean isLoaded() {
-        return searchFilterButton.isDisplayed() && getCurrentPageTitle().contains("| Поиск | LinkedIn") && getCurrentPageUrl().contains("/results/");
+        return searchResultsTotal.isDisplayed() && getCurrentPageTitle().contains("| Поиск | LinkedIn") && getCurrentPageUrl().contains("/search/results/");
     }
-    public boolean isCountResultTen(){
+    public int getSearchResultsCount(){
         ((JavascriptExecutor)browser).executeScript("scroll(0,1000)");
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        if (searchResults.size() == 10){
-            return true;
-        }
-        else {
-            return false;
-        }
+        return searchResults.size();
     }
-    public boolean isContainsSearchTerm(){
-        ((JavascriptExecutor)browser).executeScript("scroll(0,1000)");
+    public boolean isContainsSearchTerm() {
+        ((JavascriptExecutor) browser).executeScript("scroll(0,1000)");
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        for (WebElement searchResult:searchResults){
+        boolean a = false;
+        for (WebElement searchResult : searchResults) {
             String searchResultText = searchResult.getText();
-            if (searchResultText.contains("HR")){
-                return true;
+            if (searchResultText.contains("HR")) {
+                a = true;
             }
         }
-        return isContainsSearchTerm();
+        return a;
     }
 }

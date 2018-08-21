@@ -4,10 +4,15 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LinkedinLoginPage extends BasePage{
+    //методы которые переходят между страницами вовращают новые страницы
+    //инициализирует елементы и ищет момент обращения
+    //Page Object PageFactory
     @FindBy(xpath = "//input[@id='login-email']")
     private WebElement userEmailField;
+
     @FindBy(xpath = "//input[@id='login-password']")
     private WebElement userPasswordField;
+
     @FindBy(xpath = "//input[@id='login-submit']")
     private WebElement singInButton;
 
