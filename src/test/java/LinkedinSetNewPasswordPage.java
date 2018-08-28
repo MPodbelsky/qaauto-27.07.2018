@@ -20,11 +20,16 @@ public class LinkedinSetNewPasswordPage extends BasePage {
     }
 
     public boolean isLoaded() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return resetPasswordSubmitButton.isDisplayed()
                 && getCurrentPageUrl().contains("/checkpoint/rp/password-reset");
     }
 
-    public ResetPasswordIsDonePage newPassReturnResetPasswordIsDonePage(String newPass) {
+    public LinkedinEnterNewPassPage enterNewPassword(String newPass) {
         newPasswordField.sendKeys(newPass);
         confirmPasswordField.sendKeys(newPass);
         resetPasswordSubmitButton.click();
@@ -33,6 +38,6 @@ public class LinkedinSetNewPasswordPage extends BasePage {
         } catch (InterruptedException e){
             e.printStackTrace();
         }
-        return new ResetPasswordIsDonePage(browser);
+        return new LinkedinEnterNewPassPage(browser);
     }
 }

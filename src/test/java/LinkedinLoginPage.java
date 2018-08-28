@@ -24,7 +24,8 @@ public class LinkedinLoginPage extends BasePage{
         PageFactory.initElements(browser, this);
     }
     public boolean isLoaded(){
-        return singInButton.isDisplayed() && getCurrentPageTitle().contains("LinkedIn: Войти или зарегистрироваться");
+        return singInButton.isDisplayed()
+                && getCurrentPageTitle().contains("LinkedIn: Войти или зарегистрироваться");
     }
     public LinkedinLoginSubmitPage logInReturnLoginSubmitPage(String userEmail, String userPass){
         userEmailField.sendKeys(userEmail);

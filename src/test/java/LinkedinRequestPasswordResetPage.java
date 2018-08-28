@@ -23,16 +23,15 @@ public class LinkedinRequestPasswordResetPage extends BasePage{
     }
 
     public LinkedinPasswordResetSubmitPage findAccount(String userName) {
-        gMailService = new GMailService(userName,"GETOUTHERE11");
+        gMailService = new GMailService(userName, "");
         gMailService.connect();
         userEmailField.sendKeys(userName);
         findAccountButton.click();
-        String messageSubject = "данное сообщение содержит ссылку для изменения пароля";
-        String messageTo = "mathewsw1648@gmail.com";
-        String messageFrom = "security-noreply@linkedin.com";
-
-        String message = gMailService.waitMessage(messageSubject, messageTo, messageFrom, 180);
-        System.out.println("Content: " + message);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return new LinkedinPasswordResetSubmitPage(browser);
     }
 }
