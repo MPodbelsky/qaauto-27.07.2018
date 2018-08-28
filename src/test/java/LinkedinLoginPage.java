@@ -5,7 +5,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LinkedinLoginPage extends BasePage{
     //методы которые переходят между страницами вовращают новые страницы
-    //инициализирует елементы и ищет момент обращения
+    //инициализирует елементы и ищет в момент обращения
     //Page Object PageFactory
     @FindBy(xpath = "//input[@id='login-email']")
     private WebElement userEmailField;
@@ -17,7 +17,7 @@ public class LinkedinLoginPage extends BasePage{
     private WebElement singInButton;
 
     @FindBy(xpath = "//a[@class='link-forgot-password']")
-    private WebElement linkForgotPassword;
+    private WebElement forgotPasswordLink;
 
     public LinkedinLoginPage(WebDriver browser) {
         this.browser = browser;
@@ -59,13 +59,8 @@ public class LinkedinLoginPage extends BasePage{
         }
         return new LinkedinLoginPage(browser);
     }
-    public LinkedinResetPasswordPage logInReturnLinkedinResetPasswordPage(){
-        linkForgotPassword.click();
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e){
-            e.printStackTrace();
-        }
-        return new LinkedinResetPasswordPage(browser);
+    public LinkedinRequestPasswordResetPage clickForgotPasswordLink(){
+        forgotPasswordLink.click();
+        return new LinkedinRequestPasswordResetPage(browser);
     }
 }

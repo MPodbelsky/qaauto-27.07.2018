@@ -23,26 +23,24 @@ public class LinkedinResetPasswordTest {
     @DataProvider
     public Object[][] loginAndNewPasswordFields() {
         return new Object[][]{
-                {"mathewsw1648@gmail.com", "M147852369"},
+                {"mathewsw1648@gmail.com", "B147852369"},
         };
     }
 
     @Test(dataProvider = "loginAndNewPasswordFields")
-    public void linkedinResetPasswordTest (String userEmail, String userPass){
-        Assert.assertTrue(linkedinLoginPage.isLoaded(), "User is not on LoginSubmit page");
-        LinkedinResetPasswordPage linkedinResetPasswordPage = linkedinLoginPage.logInReturnLinkedinResetPasswordPage();
-        Assert.assertTrue(linkedinResetPasswordPage.isLoaded(), "Reset password page is not loaded");
-        RequestResetPasswordPage requestResetPasswordPage = linkedinResetPasswordPage.resetPassReturnRequestResetPasswordPage(userEmail);
-        Assert.assertTrue(requestResetPasswordPage.isLoaded(), "Request reset password page is not loaded");
-        GmailLoginPage gmailLoginPage = requestResetPasswordPage.logInReturnGmailLoginPage();
-        Assert.assertTrue(gmailLoginPage.isLoaded(), "Gmail login page is not loaded");
-        LinkResetPassPage linkResetPassPage = gmailLoginPage.logInReturnLinkPassPage(userEmail);
-        Assert.assertTrue(linkResetPassPage.isLoaded(), "Reset pass page is not loaded");
-        ResetPasswordIsDonePage resetPasswordIsDonePage = linkResetPassPage.newPassReturnResetPasswordIsDonePage(userPass);
+    public void successfulResetPasswordTest (String userEmail, String userPass) {
+        Assert.assertTrue(linkedinLoginPage.isLoaded(), "InkedinLoginPage is not loaded");
+        LinkedinRequestPasswordResetPage linkedinRequestPasswordResetPage = linkedinLoginPage.clickForgotPasswordLink();
+        Assert.assertTrue(linkedinRequestPasswordResetPage.isLoaded(), "RequestPasswordResetPage is not loaded");
+        LinkedinPasswordResetSubmitPage linkedinPasswordResetSubmitPage = linkedinRequestPasswordResetPage.findAccount(userEmail);
+        Assert.assertTrue(linkedinPasswordResetSubmitPage.isLoaded(), "PasswordRessetSubmitPage is not loaded");
+        LinkedinSetNewPasswordPage linkedinSetNewPasswordPage = linkedinPasswordResetSubmitPage.navigateToLinkFromEmail();
+        Assert.assertTrue(linkedinSetNewPasswordPage.isLoaded(), "LinkedinSetNewPasswordPage is not loaded");
+        /*ResetPasswordIsDonePage resetPasswordIsDonePage = linkedinSetNewPasswordPage.newPassReturnResetPasswordIsDonePage(userPass);
         Assert.assertTrue(resetPasswordIsDonePage.isLoaded(), "Password is not reset");
         LinkedinLoginPage linkedinLoginPage = resetPasswordIsDonePage.buttonClickReturnLinkedinLoginPage();
         Assert.assertTrue(linkedinLoginPage.isLoaded(), "User is not on LoginSubmit page");
         LinkedinHomePage linkedinHomePage = linkedinLoginPage.logInReturnLinkedinHomePage(userEmail, userPass);
-        Assert.assertTrue(linkedinHomePage.isLoaded(), "Linkedin home page is not loaded");
+        Assert.assertTrue(linkedinHomePage.isLoaded(), "Linkedin home page is not loaded");*/
         }
 }

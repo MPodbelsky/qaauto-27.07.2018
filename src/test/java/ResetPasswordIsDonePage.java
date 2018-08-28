@@ -14,7 +14,8 @@ public class ResetPasswordIsDonePage extends BasePage {
     }
 
     public boolean isLoaded() {
-        return resetPasswordSubmitButton.isDisplayed() && getCurrentPageTitle().contains("Вы изменили свой пароль") && getCurrentPageUrl().contains("https://www.linkedin.com/checkpoint/rp/password-reset-submit");
+        return resetPasswordSubmitButton.isDisplayed()
+                && getCurrentPageUrl().contains("/checkpoint/rp/password-reset-submit");
     }
     public LinkedinLoginPage buttonClickReturnLinkedinLoginPage(){
         resetPasswordSubmitButton.click();

@@ -3,7 +3,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LinkResetPassPage extends BasePage {
+public class LinkedinSetNewPasswordPage extends BasePage {
 
     @FindBy(xpath = "//input[@id='newPassword']")
     private WebElement newPasswordField;
@@ -14,13 +14,14 @@ public class LinkResetPassPage extends BasePage {
     @FindBy(xpath = "//button[@id='reset-password-submit-button']")
     private WebElement resetPasswordSubmitButton;
 
-    public LinkResetPassPage(WebDriver browser) {
+    public LinkedinSetNewPasswordPage(WebDriver browser) {
         this.browser = browser;
         PageFactory.initElements(browser, this);
     }
 
     public boolean isLoaded() {
-        return resetPasswordSubmitButton.isDisplayed() && getCurrentPageUrl().contains("/checkpoint/rp/password-reset");
+        return resetPasswordSubmitButton.isDisplayed()
+                && getCurrentPageUrl().contains("/checkpoint/rp/password-reset");
     }
 
     public ResetPasswordIsDonePage newPassReturnResetPasswordIsDonePage(String newPass) {
