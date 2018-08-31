@@ -1,3 +1,8 @@
+package test;
+
+import page.LinkedinHomePage;
+import page.LinkedinLoginPage;
+import page.LinkedinLoginSubmitPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
@@ -7,8 +12,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class LinkedinLoginTest {
-    WebDriver browser;
-    LinkedinLoginPage linkedinLoginPage;
+    private WebDriver browser;
+    private LinkedinLoginPage linkedinLoginPage;
     @BeforeMethod
     public void beforeMethod() {
         browser = new FirefoxDriver();
@@ -22,8 +27,8 @@ public class LinkedinLoginTest {
     @DataProvider
     public Object[][] validFieldsCombination() {
         return new Object[][]{
-                { "mathewsw1648@gmail.com", "G147852369" },
-                { "MATHEWSW1648@gmail.com", "G147852369" },
+                { "mathewsw1648@gmail.com", "B147852369" },
+                { "MATHEWSW1648@gmail.com", "B147852369" },
             };
     }
     @Test(dataProvider = "validFieldsCombination") //annotation

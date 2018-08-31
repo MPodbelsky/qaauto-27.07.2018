@@ -1,9 +1,11 @@
+package page;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LinkedinLoginSubmitPage extends BasePage{
+public class LinkedinLoginSubmitPage extends BasePage {
     @FindBy(xpath = "//*[@role='alert']")
     private WebElement alertBox;
 
@@ -16,6 +18,8 @@ public class LinkedinLoginSubmitPage extends BasePage{
     public LinkedinLoginSubmitPage(WebDriver browser) {
         this.browser = browser;
         PageFactory.initElements(browser,this);
+        waitUntilElementIsVisible(alertBox,10);
+        //wait for element;
     }
     public String getAlertBoxText(){
         return alertBox.getText();
@@ -27,6 +31,8 @@ public class LinkedinLoginSubmitPage extends BasePage{
         return userEmailValidationText.getText();
     }
     public boolean isLoaded() {
-        return alertBox.isDisplayed() && getCurrentPageTitle().contains("Войти в LinkedIn") && getCurrentPageUrl().contains("/uas/login-submit");
+        return alertBox.isDisplayed()
+                && getCurrentPageTitle().contains("Войти в LinkedIn")
+                && getCurrentPageUrl().contains("/uas/login-submit");
     }
 }

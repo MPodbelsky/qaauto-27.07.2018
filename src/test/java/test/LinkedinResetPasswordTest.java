@@ -1,3 +1,6 @@
+package test;
+
+import page.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
@@ -7,8 +10,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class LinkedinResetPasswordTest {
-        WebDriver browser;
-        LinkedinLoginPage linkedinLoginPage;
+    private WebDriver browser;
+    private LinkedinLoginPage linkedinLoginPage;
     @BeforeMethod
     public void beforeMethod() {
         browser = new FirefoxDriver();
@@ -21,13 +24,13 @@ public class LinkedinResetPasswordTest {
     }
 
     @DataProvider
-    public Object[][] loginAndNewPasswordFields() {
+    public Object[][] loginAndNewPassword() {
         return new Object[][]{
                 {"mathewsw1648@gmail.com", "MO147852369"},
         };
     }
 
-    @Test(dataProvider = "loginAndNewPasswordFields")
+    @Test(dataProvider = "loginAndNewPassword")
     public void successfulResetPasswordTest (String userEmail, String userPass) {
         Assert.assertTrue(linkedinLoginPage.isLoaded(), "InkedinLoginPage is not loaded");
         LinkedinRequestPasswordResetPage linkedinRequestPasswordResetPage = linkedinLoginPage.clickForgotPasswordLink();
@@ -35,7 +38,7 @@ public class LinkedinResetPasswordTest {
         LinkedinPasswordResetSubmitPage linkedinPasswordResetSubmitPage = linkedinRequestPasswordResetPage.findAccount(userEmail);
         Assert.assertTrue(linkedinPasswordResetSubmitPage.isLoaded(), "PasswordRessetSubmitPage is not loaded");
         LinkedinSetNewPasswordPage linkedinSetNewPasswordPage = linkedinPasswordResetSubmitPage.navigateToLinkFromEmail();
-        Assert.assertTrue(linkedinSetNewPasswordPage.isLoaded(), "LinkedinSetNewPasswordPage is not loaded");
+        Assert.assertTrue(linkedinSetNewPasswordPage.isLoaded(), "page.LinkedinSetNewPasswordPage is not loaded");
         LinkedinEnterNewPassPage linkedinEnterNewPassPage = linkedinSetNewPasswordPage.enterNewPassword(userPass);
         Assert.assertTrue(linkedinEnterNewPassPage.isLoaded(), "Password is not reset");
         LinkedinLoginPage linkedinLoginPage = linkedinEnterNewPassPage.clickReturnToLoginPage();

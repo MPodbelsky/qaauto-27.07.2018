@@ -1,3 +1,5 @@
+package page;
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,18 +16,16 @@ public class LinkedinHomePage extends BasePage {
     public LinkedinHomePage(WebDriver browser) {
         this.browser = browser;
         PageFactory.initElements(browser,this);
+        waitUntilElementIsVisible(profileNavidationItem,10);
     }
     public boolean isLoaded() {
-        return profileNavidationItem.isDisplayed() && getCurrentPageTitle().contains("LinkedIn") && getCurrentPageUrl().contains("/feed/");
+        return profileNavidationItem.isDisplayed()
+                && getCurrentPageTitle().contains("LinkedIn")
+                && getCurrentPageUrl().contains("/feed/");
     }
     public LinkedinSearchPage search(String searchTerm){
         searchField.sendKeys(searchTerm);
         searchField.sendKeys(Keys.ENTER);
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return new LinkedinSearchPage(browser);
     }
 }

@@ -1,3 +1,5 @@
+package page;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,9 +17,12 @@ public class LinkedinSearchPage extends BasePage {
     public LinkedinSearchPage(WebDriver browser){
         this.browser = browser;
         PageFactory.initElements(browser, this);
+        waitUntilElementIsVisible(searchResultsTotal,10);
     }
     public boolean isLoaded() {
-        return searchResultsTotal.isDisplayed() && getCurrentPageTitle().contains("| Поиск | LinkedIn") && getCurrentPageUrl().contains("/search/results/");
+        return searchResultsTotal.isDisplayed()
+                && getCurrentPageTitle().contains("| Поиск | LinkedIn")
+                && getCurrentPageUrl().contains("/search/results/");
     }
     public int getSearchResultsCount(){
         ((JavascriptExecutor)browser).executeScript("scroll(0,1000)");

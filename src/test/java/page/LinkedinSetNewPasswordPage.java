@@ -1,3 +1,5 @@
+package page;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,14 +19,10 @@ public class LinkedinSetNewPasswordPage extends BasePage {
     public LinkedinSetNewPasswordPage(WebDriver browser) {
         this.browser = browser;
         PageFactory.initElements(browser, this);
+        waitUntilElementIsVisible(resetPasswordSubmitButton, 10);
     }
 
     public boolean isLoaded() {
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return resetPasswordSubmitButton.isDisplayed()
                 && getCurrentPageUrl().contains("/checkpoint/rp/password-reset");
     }
@@ -33,11 +31,6 @@ public class LinkedinSetNewPasswordPage extends BasePage {
         newPasswordField.sendKeys(newPass);
         confirmPasswordField.sendKeys(newPass);
         resetPasswordSubmitButton.click();
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e){
-            e.printStackTrace();
-        }
         return new LinkedinEnterNewPassPage(browser);
     }
 }

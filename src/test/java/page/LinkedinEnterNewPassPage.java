@@ -1,3 +1,5 @@
+package page;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,6 +13,7 @@ public class LinkedinEnterNewPassPage extends BasePage {
     public LinkedinEnterNewPassPage(WebDriver browser) {
         this.browser = browser;
         PageFactory.initElements(browser, this);
+        waitUntilElementIsVisible(resetPasswordSubmitButton, 10);
     }
 
     public boolean isLoaded() {
@@ -19,11 +22,6 @@ public class LinkedinEnterNewPassPage extends BasePage {
     }
     public LinkedinLoginPage clickReturnToLoginPage(){
         resetPasswordSubmitButton.click();
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e){
-            e.printStackTrace();
-        }
         return new LinkedinLoginPage(browser);
     }
 }
