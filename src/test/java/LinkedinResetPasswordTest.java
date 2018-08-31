@@ -23,7 +23,7 @@ public class LinkedinResetPasswordTest {
     @DataProvider
     public Object[][] loginAndNewPasswordFields() {
         return new Object[][]{
-                {"mathewsw1648@gmail.com", "B147852369"},
+                {"mathewsw1648@gmail.com", "MO147852369"},
         };
     }
 

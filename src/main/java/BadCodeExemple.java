@@ -11,7 +11,8 @@ public class BadCodeExemple {
     public static void main(String args[]) throws InterruptedException {
         System.out.println("Hello world!!!");
         WebDriver browser = new FirefoxDriver();
-        browser.get("https://www.google.com/");
+        String b = "https://www.google.com/";
+        browser.get(b);
         WebElement queryField = browser.findElement(By.name("q"));
         queryField.sendKeys("Selenium");
         queryField.sendKeys(Keys.ENTER);
