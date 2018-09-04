@@ -25,7 +25,7 @@ public class LinkedinSearchTest {
     }
 
     /**
-     * Verify successfful search
+     * Verify successful search
      *
      * - Login
      * - Search
@@ -33,7 +33,7 @@ public class LinkedinSearchTest {
     @Test
     public void basicSearchTest(){
         Assert.assertTrue(linkedinLoginPage.isLoaded(), "User is not on LoginSubmit page");
-        LinkedinHomePage linkedinHomePage = linkedinLoginPage.logInReturnLinkedinHomePage("mathewsw1648@gmail.com","B147852369");
+        LinkedinHomePage linkedinHomePage = linkedinLoginPage.logInReturnLinkedinHomePage("mathewsw1648@gmail.com","G147852369");
         Assert.assertTrue(linkedinHomePage.isLoaded(),"HomePage is not loaded");
         LinkedinSearchPage linkedinSearchPage = linkedinHomePage.search("HR");
         Assert.assertTrue(linkedinSearchPage.isLoaded(),"Search page is not loaded");

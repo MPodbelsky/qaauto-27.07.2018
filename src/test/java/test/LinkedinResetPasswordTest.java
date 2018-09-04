@@ -26,7 +26,7 @@ public class LinkedinResetPasswordTest {
     @DataProvider
     public Object[][] loginAndNewPassword() {
         return new Object[][]{
-                {"mathewsw1648@gmail.com", "MO147852369"},
+                {"mathewsw1648@gmail.com", "G147852369"},
         };
     }
 
@@ -39,9 +39,9 @@ public class LinkedinResetPasswordTest {
         Assert.assertTrue(linkedinPasswordResetSubmitPage.isLoaded(), "PasswordRessetSubmitPage is not loaded");
         LinkedinSetNewPasswordPage linkedinSetNewPasswordPage = linkedinPasswordResetSubmitPage.navigateToLinkFromEmail();
         Assert.assertTrue(linkedinSetNewPasswordPage.isLoaded(), "page.LinkedinSetNewPasswordPage is not loaded");
-        LinkedinEnterNewPassPage linkedinEnterNewPassPage = linkedinSetNewPasswordPage.enterNewPassword(userPass);
-        Assert.assertTrue(linkedinEnterNewPassPage.isLoaded(), "Password is not reset");
-        LinkedinLoginPage linkedinLoginPage = linkedinEnterNewPassPage.clickReturnToLoginPage();
+        LinkedinResetPasswordIsDonePage LinkedinResetPasswordIsDonePage = linkedinSetNewPasswordPage.enterNewPassword(userPass);
+        Assert.assertTrue(LinkedinResetPasswordIsDonePage.isLoaded(), "Password is not reset");
+        LinkedinResetPasswordIsDonePage.clickReturnToLoginPage();
         Assert.assertTrue(linkedinLoginPage.isLoaded(), "User is not on LoginSubmit page");
         LinkedinHomePage linkedinHomePage = linkedinLoginPage.logInReturnLinkedinHomePage(userEmail, userPass);
         Assert.assertTrue(linkedinHomePage.isLoaded(), "Linkedin home page is not loaded");
