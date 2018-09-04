@@ -15,7 +15,7 @@ public abstract class BasePage {
 
 
     /**
-     * Method wich has got current page title.
+     * Method getCurrentPageTitle has got current page title.
      * @return Current page title.
      */
     public String getCurrentPageTitle(){
@@ -23,7 +23,7 @@ public abstract class BasePage {
     }
 
     /**
-     * Method wich has got current page url.
+     * Method getCurrentPageUrl has got current page url.
      * @return Current page url.
      */
     public String getCurrentPageUrl(){

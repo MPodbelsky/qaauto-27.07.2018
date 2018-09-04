@@ -34,10 +34,10 @@ public class LinkedinResetPasswordIsDonePage extends BasePage {
 
     /**
      * Method clickReturnToLoginPage is clicked on the resetPasswordSubmitButton.
-     * @return LinkedinLoginPage.
+     * @return LinkedinHomePage.
      */
-    public LinkedinLoginPage clickReturnToLoginPage(){
+    public LinkedinHomePage clickReturnToLoginPage(){
         resetPasswordSubmitButton.click();
-        return new LinkedinLoginPage(browser);
+        return new LinkedinHomePage(browser);
     }
 }

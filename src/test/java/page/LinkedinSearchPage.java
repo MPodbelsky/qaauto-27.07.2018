@@ -1,10 +1,13 @@
 package page;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,9 +19,6 @@ public class LinkedinSearchPage extends BasePage {
 
     @FindBy (xpath = "//h3[contains(@class,'search-results__total')]")
     private WebElement searchResultsTotal;
-
-    @FindBy(xpath = "//button[@class='search-result__actions--primary button-secondary-medium m5']")
-    private WebElement createContactButton;
 
     /**
      * Constructor of LinkedinSearchPage class.
@@ -45,25 +45,19 @@ public class LinkedinSearchPage extends BasePage {
      * @return size of searchResult list.
      */
     public int getSearchResultsCount(){
-        ((JavascriptExecutor)browser).executeScript("scroll(0,1000)");
-        waitUntilElementIsVisible(createContactButton,10);
         return searchResults.size();
     }
 
     /**
-     * Method isContainsSearchTerm verifies that each search result of search result list contains searchTerm.
-     * @return true is each result contains searchTerm.
+     * //TODO
+     * @return
      */
-    public boolean isContainsSearchTerm() {
-        ((JavascriptExecutor) browser).executeScript("scroll(0,1000)");
-        waitUntilElementIsVisible(createContactButton,10);
-        boolean a = false;
-        for (WebElement searchResult : searchResults) {
-            String searchResultText = searchResult.getText();
-            if (searchResultText.contains("HR")) {
-                a = true;
-            }
+    public List<String> getSearchResultsList() {
+        List<String> searchResultList = new ArrayList<String>();
+        for (WebElement searchResult: searchResults){
+            ((JavascriptExecutor)browser).executeScript("arguments[0].scrollIntoView();", searchResult);
+            searchResultList.add(searchResult.getText());
         }
-        return a;
+        return searchResultList;
     }
 }

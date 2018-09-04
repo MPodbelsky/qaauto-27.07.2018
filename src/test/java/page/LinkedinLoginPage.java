@@ -41,43 +41,27 @@ public class LinkedinLoginPage extends BasePage {
                 && getCurrentPageUrl().contains("linkedin.com");
     }
 
-    /**
-     * Method for login with invalid credentials.
-     * @param userEmail - user email.
-     * @param userPass - user password.
-     * @return LinkedinLoginSubmitPage if credentials are invalid.
-     */
-    public LinkedinLoginSubmitPage logInReturnLoginSubmitPage(String userEmail, String userPass){
-        userEmailField.sendKeys(userEmail);
-        userPasswordField.sendKeys(userPass);
-        singInButton.click();
-        return new LinkedinLoginSubmitPage(browser);
-    }
 
     /**
-     * Method for login with valid credentials.
-     * @param userEmail - user email.
-     * @param userPass - user password.
-     * @return LinkedinHomePage if credentials are valid.
+     * Method that enters userEmail/userPass and click singIn button.
+     * @param userEmail - String with user email.
+     * @param userPass - String with user password.
+     * @param <T> - Generic type to return corresponding pageObject.
+     * @return either LinkedinLoginSubmitPage or LinkedinHomePage or LinkedinLoginPage pageObject.
      */
-    public LinkedinHomePage logInReturnLinkedinHomePage (String userEmail, String userPass){
+    public <T> T login(String userEmail, String userPass){
         userEmailField.sendKeys(userEmail);
         userPasswordField.sendKeys(userPass);
         singInButton.click();
-        return new LinkedinHomePage(browser);
-    }
-
-    /**
-     * Method for login with empty fields (email, password or both).
-     * @param userEmail - user email.
-     * @param userPass - user password.
-     * @return LinkedinLoginPage if one of the fields (email or password) are empty.
-     */
-    public LinkedinLoginPage logInReturnLinkedInLoginPage(String userEmail, String userPass){
-        userEmailField.sendKeys(userEmail);
-        userPasswordField.sendKeys(userPass);
-        singInButton.click();
-        return new LinkedinLoginPage(browser);
+        if (getCurrentPageUrl().contains("/uas/login-submit")){
+            return (T) new LinkedinLoginSubmitPage(browser);
+        }
+        if (getCurrentPageUrl().contains("/feed")){
+            return (T) new LinkedinHomePage(browser);
+        }
+        else{
+            return (T) this;
+        }
     }
 
     /**
