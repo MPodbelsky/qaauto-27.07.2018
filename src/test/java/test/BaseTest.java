@@ -13,9 +13,10 @@ public class BaseTest {
     private WebDriver browser;
     LinkedinLoginPage linkedinLoginPage;
 
-    @Parameters("browserName")
+    @Parameters({"browserName","browserUrl"})
     @BeforeMethod
-    public void beforeMethod(@Optional("chrome") String browserName){
+    public void beforeMethod(@Optional("chrome") String browserName,
+                             @Optional("https://www.linkedin.com/")String browserUrl){
         if (browserName.toLowerCase().equals("firefox")) {
             browser = new FirefoxDriver();
         }
@@ -23,12 +24,12 @@ public class BaseTest {
             browser = new ChromeDriver();
         }else {
             try {
-                throw new Exception("browserName" + "is not supported");
+                throw new Exception("browserName" + " is not supported");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        browser.get("https://www.linkedin.com/");
+        browser.get(browserUrl);
         linkedinLoginPage = new LinkedinLoginPage(browser);
     }
     @AfterMethod
