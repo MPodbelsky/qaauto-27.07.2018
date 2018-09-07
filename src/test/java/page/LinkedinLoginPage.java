@@ -38,6 +38,8 @@ public class LinkedinLoginPage extends BasePage {
     public boolean isLoaded(){
         return singInButton.isDisplayed()
                 && getCurrentPageTitle().contains("LinkedIn: Войти или зарегистрироваться")
+                || getCurrentPageTitle().contains("LinkedIn: Log In or Sign Up")
+                || getCurrentPageTitle().contains("LinkedIn: Einloggen oder Registrieren")
                 && getCurrentPageUrl().contains("linkedin.com");
     }
 

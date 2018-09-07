@@ -13,10 +13,10 @@ public class BaseTest {
     private WebDriver browser;
     LinkedinLoginPage linkedinLoginPage;
 
-    @Parameters({"browserName","browserUrl"})
+    @Parameters({"browserName","evnUrl"})
     @BeforeMethod
     public void beforeMethod(@Optional("chrome") String browserName,
-                             @Optional("https://www.linkedin.com/")String browserUrl){
+                             @Optional("https://www.linkedin.com/")String evnUrl){
         if (browserName.toLowerCase().equals("firefox")) {
             browser = new FirefoxDriver();
         }
@@ -29,7 +29,7 @@ public class BaseTest {
                 e.printStackTrace();
             }
         }
-        browser.get(browserUrl);
+        browser.get(evnUrl);
         linkedinLoginPage = new LinkedinLoginPage(browser);
     }
     @AfterMethod

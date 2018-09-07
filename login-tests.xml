@@ -7,60 +7,41 @@
             <class name="test.LinkedinLoginTest" />
         </classes>
     </test>
+
     <test name="LoginTestsFirefox" >
         <parameter name="browserName" value="firefox"/>
         <classes>
             <class name="test.LinkedinLoginTest" />
         </classes>
     </test>
+
     <test name="LoginTestsLocalizationUK">
-        <parameter name="browserUrl" value="https://uk.linkedin.com/"/>
-        <groups>
-            <run>
-                <exclude name="validateUserEmailAndPassword"/>
-                <exclude name="validateEmptyUserEmailAndUserPass"/>
-            </run>
-        </groups>
+        <parameter name="evnUrl" value="https://uk.linkedin.com/"/>
         <classes>
             <class name="test.LinkedinLoginTest">
                 <methods>
-                    <exclude name="validateUserEmailAndPassword"/>
                     <exclude name="validateEmptyUserEmailAndUserPass"/>
                 </methods>
             </class>
         </classes>
     </test>
+
     <test name="LoginTestsLocalizationRU">
-        <parameter name="browserUrl" value="https://ru.linkedin.com/"/>
-        <groups>
-            <run>
-                <exclude name="validateUserEmailAndPassword"/>
-                <exclude name="validateEmptyUserEmailAndUserPass"/>
-            </run>
-        </groups>
-
+        <parameter name="evnUrl" value="https://ru.linkedin.com/"/>
         <classes>
             <class name="test.LinkedinLoginTest">
                 <methods>
-                    <exclude name="validateUserEmailAndPassword"/>
                     <exclude name="validateEmptyUserEmailAndUserPass"/>
                 </methods>
             </class>
         </classes>
     </test>
-    <test name="LoginTestsLocalizationDE">
-        <parameter name="browserUrl" value="https://de.linkedin.com/"/>
-        <groups>
-            <run>
-                <exclude name="validateUserEmailAndPassword"/>
-                <exclude name="validateEmptyUserEmailAndUserPass"/>
-            </run>
-        </groups>
 
+    <test name="LoginTestsLocalizationDE">
+        <parameter name="evnUrl" value="https://de.linkedin.com/"/>
         <classes>
             <class name="test.LinkedinLoginTest">
                 <methods>
-                    <exclude name="validateUserEmailAndPassword"/>
                     <exclude name="validateEmptyUserEmailAndUserPass"/>
                 </methods>
             </class>

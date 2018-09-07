@@ -59,6 +59,8 @@ public class LinkedinLoginSubmitPage extends BasePage {
     public boolean isLoaded() {
         return alertBox.isDisplayed()
                 && getCurrentPageTitle().contains("Войти в LinkedIn")
+                || getCurrentPageTitle().contains("Sign In to LinkedIn")
+                || getCurrentPageTitle().contains("LinkedIn: Einloggen oder Registrieren")
                 && getCurrentPageUrl().contains("/uas/login-submit");
     }
 }
